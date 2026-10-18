@@ -1,6 +1,7 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
+# account/colorScheme.ts
 # account/KcAccountUi.tsx
 # admin/ForbiddenSection.tsx
 # admin/help-urls.ts
@@ -823,7 +824,6 @@
 
 # === @keycloakify/keycloak-account-ui v260502.0.2 ===
 /account/api.ts
-/account/colorScheme.ts
 /account/environment.ts
 /account/i18next.d.ts
 /account/KcContext.ts
