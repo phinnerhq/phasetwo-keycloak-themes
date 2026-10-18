@@ -10,6 +10,7 @@ import "@patternfly/react-core/dist/styles/base.css";
 
 import { useReducer, useEffect } from "react";
 import { startColorSchemeManagement } from "./colorScheme";
+import { loadRealmAssets } from "./realmAssets";
 import { KeycloakProvider } from "../shared/keycloak-ui-shared";
 import { environment } from "./environment";
 import { i18n } from "./i18n/i18n";
@@ -22,6 +23,7 @@ document.title = "Account Management";
 
 const prI18nInitialized = i18n.init();
 startColorSchemeManagement();
+loadRealmAssets();
 
 export default function KcAccountUi() {
   const [isI18nInitialized, setI18nInitialized] = useReducer(() => true, false);

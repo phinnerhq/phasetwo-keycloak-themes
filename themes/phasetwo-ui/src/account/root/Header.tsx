@@ -9,7 +9,6 @@
 
 // @ts-nocheck
 
-import logoSvgUrl from "../assets/logo.svg";
 import faviconSvgUrl from "../assets/favicon.svg";
 import {
   KeycloakMasthead,
@@ -23,6 +22,7 @@ import { useHref } from "react-router-dom";
 
 import { environment } from "../environment";
 import { joinPath } from "../utils/joinPath";
+import { realmAssetsUrl } from "../realmAssets";
 
 import style from "./header.module.css";
 
@@ -63,7 +63,7 @@ export const Header = () => {
       features={{ hasManageAccount: false }}
       brand={{
         href: indexHref,
-        src: logoSvgUrl,
+        src: `${realmAssetsUrl}/img/logo`,
         alt: t("logo"),
         className: style.brand,
       }}
