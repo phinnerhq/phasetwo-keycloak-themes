@@ -33,7 +33,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          jar="target/keycloak-themes-${GITHUB_REF_NAME#v}.jar"
+          cd target
+          jar="keycloak-themes-${GITHUB_REF_NAME#v}.jar"
           sha256sum "$jar" | tee "$jar.sha256"
           gh release create "$GITHUB_REF_NAME" "$jar" "$jar.sha256" \
             --title "$GITHUB_REF_NAME" \
