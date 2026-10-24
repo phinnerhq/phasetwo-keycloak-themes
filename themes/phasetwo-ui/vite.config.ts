@@ -34,7 +34,14 @@ export default defineConfig({
       // resolves to the custom default (no regression); with an override it
       // resolves to the override. Keep this list in sync with i18n.ts.
       // https://docs.keycloakify.dev/features/i18n/adding-new-translation-messages-or-changing-the-default-ones#my-realm-overrides-translation-arent-applied
+      //
+      // Keycloakify inlines this block in the per-key loop of the kcContext
+      // serializer, and every message add wraps the hash once more. Without the
+      // guard, pages with large contexts (e.g. the user profile form) nest
+      // thousands of hashes and blow the stack. See keycloakify#1039.
       kcContextExclusionsFtl: `
+        <#if !xKeycloakifyCustomMessagesAdded??>
+        <#assign xKeycloakifyCustomMessagesAdded = true>
         <@addToXKeycloakifyMessagesIfMessageKey str="welcomeMessage" />
         <@addToXKeycloakifyMessagesIfMessageKey str="loginAccountTitle" />
         <@addToXKeycloakifyMessagesIfMessageKey str="registerTitle" />
@@ -72,6 +79,7 @@ export default defineConfig({
         <@addToXKeycloakifyMessagesIfMessageKey str="home-idp-discovery-identity-provider-login-label" />
         <@addToXKeycloakifyMessagesIfMessageKey str="validationSuccessTitle" />
         <@addToXKeycloakifyMessagesIfMessageKey str="validationCloseWindow" />
+        </#if>
       `,
       keycloakifyBuildDirPath: path.resolve(
         dirname,
